@@ -4,6 +4,7 @@ from datetime import datetime
 import streamlit as st
 import pandas as pd
 from google import genai
+from PIL import Image
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
