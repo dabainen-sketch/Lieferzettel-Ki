@@ -13,7 +13,7 @@ Die App kann:
 In Streamlit Community Cloud unter **Advanced settings → Secrets** setzen:
 
 ```toml
-GEMINI_API_KEY = "DEIN_GEMINI_KEY"
+GEMINI_API_KEY = "DEIN KEY"
 ```
 
 Den Key niemals in GitHub-Code schreiben.
