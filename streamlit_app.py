@@ -70,6 +70,7 @@ def get_client():
     return genai.Client(api_key=key)
 
 def extract(image):
+        image = Image.open(image)
     response = get_client().models.generate_content(
         model=MODEL, contents=[PROMPT, image]
     )
