@@ -70,13 +70,17 @@ def get_client():
     return genai.Client(api_key=key)
 
 def extract(image):
-        image = Image.open(image)
+    image = Image.open(image)
+
     response = get_client().models.generate_content(
-        model=MODEL, contents=[PROMPT, image]
+        model=MODEL,
+        contents=[PROMPT, image]
     )
+
     raw = response.text.strip()
     raw = re.sub(r"^```(?:json)?\s*", "", raw)
     raw = re.sub(r"\s*```$", "", raw)
+
     return json.loads(raw)
 
 def make_xlsx(header, df):
