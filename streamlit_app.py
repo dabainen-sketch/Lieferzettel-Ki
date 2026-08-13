@@ -70,9 +70,17 @@ def get_client():
     return genai.Client(api_key=key)
 
 def extract(image):
+    key = st.secrets.get("GEMINI_API_KEY", os.getenv("GEMINI_API_KEY", ""))
+
+    if not key:
+        st.error("Der Gemini-Key ist nicht als Secret hinterlegt.")
+        st.stop()
+
+    client = genai.Client(api_key=key)
+
     image = Image.open(image)
 
-    response = get_client().models.generate_content(
+    response = client.models.generate_content(
         model=MODEL,
         contents=[PROMPT, image]
     )
@@ -80,6 +88,8 @@ def extract(image):
     raw = response.text.strip()
     raw = re.sub(r"^```(?:json)?\s*", "", raw)
     raw = re.sub(r"\s*```$", "", raw)
+
+    return json.loads(raw)
 
     return json.loads(raw)
 
